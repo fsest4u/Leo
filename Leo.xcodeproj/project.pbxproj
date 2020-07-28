@@ -15,6 +15,9 @@
 		174F931524CFE3E9004F975A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 174F931324CFE3E9004F975A /* LaunchScreen.storyboard */; };
 		174F932024CFE3EA004F975A /* LeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F931F24CFE3EA004F975A /* LeoTests.swift */; };
 		174F932B24CFE3EA004F975A /* LeoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F932A24CFE3EA004F975A /* LeoUITests.swift */; };
+		2E9C81BCE05EB7853A454C42 /* Pods_LeoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A00AACE62403283228720E /* Pods_LeoTests.framework */; };
+		488C44687CAD99ADCA954B3D /* Pods_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4303DC0B9D270F6E1A23F71D /* Pods_Leo.framework */; };
+		522554B0EA70440A07686FA6 /* Pods_Leo_LeoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54CD3346BF71EC3554EEF0BE /* Pods_Leo_LeoUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03367B9701C177B78E0749DB /* Pods-Leo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Leo.debug.xcconfig"; path = "Target Support Files/Pods-Leo/Pods-Leo.debug.xcconfig"; sourceTree = "<group>"; };
 		174F930524CFE3E8004F975A /* Leo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		174F930824CFE3E8004F975A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		174F930A24CFE3E8004F975A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +53,14 @@
 		174F932624CFE3EA004F975A /* LeoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		174F932A24CFE3EA004F975A /* LeoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeoUITests.swift; sourceTree = "<group>"; };
 		174F932C24CFE3EA004F975A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4303DC0B9D270F6E1A23F71D /* Pods_Leo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Leo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B01EC12BC3B5E91CB827C89 /* Pods-LeoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeoTests.release.xcconfig"; path = "Target Support Files/Pods-LeoTests/Pods-LeoTests.release.xcconfig"; sourceTree = "<group>"; };
+		54CD3346BF71EC3554EEF0BE /* Pods_Leo_LeoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Leo_LeoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		78A00AACE62403283228720E /* Pods_LeoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF94DA5F53AEA9F8B1FA3D46 /* Pods-LeoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeoTests.debug.xcconfig"; path = "Target Support Files/Pods-LeoTests/Pods-LeoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C6DB8DC3EE3889BE423A92DB /* Pods-Leo-LeoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Leo-LeoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Leo-LeoUITests/Pods-Leo-LeoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C759570B78D68D9D71943F18 /* Pods-Leo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Leo.release.xcconfig"; path = "Target Support Files/Pods-Leo/Pods-Leo.release.xcconfig"; sourceTree = "<group>"; };
+		FDFA349A8E370BDE61209271 /* Pods-Leo-LeoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Leo-LeoUITests.release.xcconfig"; path = "Target Support Files/Pods-Leo-LeoUITests/Pods-Leo-LeoUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				488C44687CAD99ADCA954B3D /* Pods_Leo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E9C81BCE05EB7853A454C42 /* Pods_LeoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				522554B0EA70440A07686FA6 /* Pods_Leo_LeoUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +98,8 @@
 				174F931E24CFE3EA004F975A /* LeoTests */,
 				174F932924CFE3EA004F975A /* LeoUITests */,
 				174F930624CFE3E8004F975A /* Products */,
+				8ADB849A02A658DF7F752B8D /* Pods */,
+				EFCC8398BE6285DF9BF2C5CA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +145,30 @@
 			path = LeoUITests;
 			sourceTree = "<group>";
 		};
+		8ADB849A02A658DF7F752B8D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				03367B9701C177B78E0749DB /* Pods-Leo.debug.xcconfig */,
+				C759570B78D68D9D71943F18 /* Pods-Leo.release.xcconfig */,
+				C6DB8DC3EE3889BE423A92DB /* Pods-Leo-LeoUITests.debug.xcconfig */,
+				FDFA349A8E370BDE61209271 /* Pods-Leo-LeoUITests.release.xcconfig */,
+				AF94DA5F53AEA9F8B1FA3D46 /* Pods-LeoTests.debug.xcconfig */,
+				4B01EC12BC3B5E91CB827C89 /* Pods-LeoTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EFCC8398BE6285DF9BF2C5CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4303DC0B9D270F6E1A23F71D /* Pods_Leo.framework */,
+				54CD3346BF71EC3554EEF0BE /* Pods_Leo_LeoUITests.framework */,
+				78A00AACE62403283228720E /* Pods_LeoTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +176,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 174F932F24CFE3EA004F975A /* Build configuration list for PBXNativeTarget "Leo" */;
 			buildPhases = (
+				569FC587BEE34078AA5DB01F /* [CP] Check Pods Manifest.lock */,
 				174F930124CFE3E8004F975A /* Sources */,
 				174F930224CFE3E8004F975A /* Frameworks */,
 				174F930324CFE3E8004F975A /* Resources */,
+				1576D0669050CA1FB72F1DFB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +195,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 174F933224CFE3EA004F975A /* Build configuration list for PBXNativeTarget "LeoTests" */;
 			buildPhases = (
+				41D1B4B9C0C3DD429E3A783A /* [CP] Check Pods Manifest.lock */,
 				174F931724CFE3EA004F975A /* Sources */,
 				174F931824CFE3EA004F975A /* Frameworks */,
 				174F931924CFE3EA004F975A /* Resources */,
@@ -170,9 +214,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 174F933524CFE3EA004F975A /* Build configuration list for PBXNativeTarget "LeoUITests" */;
 			buildPhases = (
+				6701F20347A481479E4ADD8E /* [CP] Check Pods Manifest.lock */,
 				174F932224CFE3EA004F975A /* Sources */,
 				174F932324CFE3EA004F975A /* Frameworks */,
 				174F932424CFE3EA004F975A /* Resources */,
+				9BC9232AA9651DDDDA152EFF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,6 +299,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1576D0669050CA1FB72F1DFB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Leo/Pods-Leo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Leo/Pods-Leo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Leo/Pods-Leo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41D1B4B9C0C3DD429E3A783A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LeoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		569FC587BEE34078AA5DB01F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Leo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6701F20347A481479E4ADD8E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Leo-LeoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BC9232AA9651DDDDA152EFF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Leo-LeoUITests/Pods-Leo-LeoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Leo-LeoUITests/Pods-Leo-LeoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Leo-LeoUITests/Pods-Leo-LeoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		174F930124CFE3E8004F975A /* Sources */ = {
@@ -432,6 +581,7 @@
 		};
 		174F933024CFE3EA004F975A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03367B9701C177B78E0749DB /* Pods-Leo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -450,6 +600,7 @@
 		};
 		174F933124CFE3EA004F975A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C759570B78D68D9D71943F18 /* Pods-Leo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -468,6 +619,7 @@
 		};
 		174F933324CFE3EA004F975A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF94DA5F53AEA9F8B1FA3D46 /* Pods-LeoTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,6 +642,7 @@
 		};
 		174F933424CFE3EA004F975A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B01EC12BC3B5E91CB827C89 /* Pods-LeoTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +665,7 @@
 		};
 		174F933624CFE3EA004F975A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6DB8DC3EE3889BE423A92DB /* Pods-Leo-LeoUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +686,7 @@
 		};
 		174F933724CFE3EA004F975A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDFA349A8E370BDE61209271 /* Pods-Leo-LeoUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
