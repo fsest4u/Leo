@@ -15,6 +15,8 @@
 		174F931524CFE3E9004F975A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 174F931324CFE3E9004F975A /* LaunchScreen.storyboard */; };
 		174F932024CFE3EA004F975A /* LeoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F931F24CFE3EA004F975A /* LeoTests.swift */; };
 		174F932B24CFE3EA004F975A /* LeoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F932A24CFE3EA004F975A /* LeoUITests.swift */; };
+		177391BE24D154A900F4B850 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177391BD24D154A900F4B850 /* Util.swift */; };
+		177391C024D158D000F4B850 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177391BF24D158D000F4B850 /* Constant.swift */; };
 		2E9C81BCE05EB7853A454C42 /* Pods_LeoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78A00AACE62403283228720E /* Pods_LeoTests.framework */; };
 		488C44687CAD99ADCA954B3D /* Pods_Leo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4303DC0B9D270F6E1A23F71D /* Pods_Leo.framework */; };
 		522554B0EA70440A07686FA6 /* Pods_Leo_LeoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54CD3346BF71EC3554EEF0BE /* Pods_Leo_LeoUITests.framework */; };
@@ -53,6 +55,8 @@
 		174F932624CFE3EA004F975A /* LeoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		174F932A24CFE3EA004F975A /* LeoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeoUITests.swift; sourceTree = "<group>"; };
 		174F932C24CFE3EA004F975A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		177391BD24D154A900F4B850 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		177391BF24D158D000F4B850 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		4303DC0B9D270F6E1A23F71D /* Pods_Leo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Leo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B01EC12BC3B5E91CB827C89 /* Pods-LeoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeoTests.release.xcconfig"; path = "Target Support Files/Pods-LeoTests/Pods-LeoTests.release.xcconfig"; sourceTree = "<group>"; };
 		54CD3346BF71EC3554EEF0BE /* Pods_Leo_LeoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Leo_LeoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +120,7 @@
 		174F930724CFE3E8004F975A /* Leo */ = {
 			isa = PBXGroup;
 			children = (
+				177391BC24D1549900F4B850 /* Util */,
 				174F930824CFE3E8004F975A /* AppDelegate.swift */,
 				174F930A24CFE3E8004F975A /* SceneDelegate.swift */,
 				174F930C24CFE3E8004F975A /* ViewController.swift */,
@@ -143,6 +148,15 @@
 				174F932C24CFE3EA004F975A /* Info.plist */,
 			);
 			path = LeoUITests;
+			sourceTree = "<group>";
+		};
+		177391BC24D1549900F4B850 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				177391BD24D154A900F4B850 /* Util.swift */,
+				177391BF24D158D000F4B850 /* Constant.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		8ADB849A02A658DF7F752B8D /* Pods */ = {
@@ -409,7 +423,9 @@
 			files = (
 				174F930D24CFE3E8004F975A /* ViewController.swift in Sources */,
 				174F930924CFE3E8004F975A /* AppDelegate.swift in Sources */,
+				177391C024D158D000F4B850 /* Constant.swift in Sources */,
 				174F930B24CFE3E8004F975A /* SceneDelegate.swift in Sources */,
+				177391BE24D154A900F4B850 /* Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
