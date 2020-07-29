@@ -16,6 +16,10 @@ class ViewController: UIViewController {
 
     var locationManager = CLLocationManager()
     
+    let ZOOM_LEVEL_DEFAULT: Double = 14
+    let ZOOM_LEVEL_MIN: Double = 8
+    let ZOOM_LEVEL_MAX: Double = 16
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -45,8 +49,10 @@ class ViewController: UIViewController {
 //        naverMapView.showZoomControls = true
 //        naverMapView.showLocationButton = true
         naverMapView.mapView.positionMode = .compass
-        
 
+        naverMapView.mapView.minZoomLevel = ZOOM_LEVEL_MIN
+        naverMapView.mapView.maxZoomLevel = ZOOM_LEVEL_MAX
+        
     }
 
 
@@ -57,8 +63,10 @@ extension ViewController: NMFMapViewOptionDelegate {
     func mapViewOptionChanged(_ mapView: NMFMapView) {
         
         print("mapViewOptionChanged")
+        
 
     }
+    
 }
 
 extension ViewController: CLLocationManagerDelegate {
@@ -74,7 +82,7 @@ extension ViewController: CLLocationManagerDelegate {
         let value: CLLocationCoordinate2D = manager.location!.coordinate
         print("value = \(value.latitude) \(value.longitude)")
         
-        let position = NMFCameraPosition(NMGLatLng(lat: value.latitude, lng: value.longitude), zoom: 14, tilt: 0, heading: 0)
+        let position = NMFCameraPosition(NMGLatLng(lat: value.latitude, lng: value.longitude), zoom: naverMapView.mapView.zoomLevel, tilt: 0, heading: 0)
         
         naverMapView.mapView.moveCamera(NMFCameraUpdate(position: position))
     }
