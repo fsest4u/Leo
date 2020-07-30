@@ -196,35 +196,64 @@ class ViewController: UIViewController {
             speed = 0
         }
         labelCurVelocity.text = String(speed)
+        labelAverageVelocity.text = getAverageSpeed()
+        labelBestVelocity.text = getBestSpeed()
         
-        // total distance
+        labelDistance.text = getDistance(locationInfo: locationInfo)
+        
+    }
+    
+    // best speed
+    func getBestSpeed() -> String {
+        let count = arrLocationInfo.count
+        if count <= 0 {
+            return "0.0"
+        }
+        var maxSpeed = arrLocationInfo.map { $0.speed }.max()!
+        if maxSpeed < 0 {
+            maxSpeed = 0
+        }
+        let strSpeed = String(format: "%.2f", maxSpeed)
+        print("getBestSpeed : \(strSpeed)")
+        return strSpeed
+    }
+    
+    func getAverageSpeed() -> String {
+        let count = arrLocationInfo.count
+        if count <= 0 {
+            return "0.0"
+        }
+        var totSpeed = 0.0
+        for i in 0...(count - 1) {
+            var speed = arrLocationInfo[i].speed
+            if speed < 0 {
+                speed = 0
+            }
+            totSpeed = totSpeed + speed
+        }
+        
+        let averSpeed = totSpeed / Double(count)
+        let strSpeed = String(format: "%.2f", averSpeed)
+        print("getAverageSpeed : \(strSpeed)")
+        return strSpeed
+    }
+    
+    // total distance
+    func getDistance(locationInfo: CLLocation) -> String {
+        
         if arrNMGLatLng.count <= 0 {
-            return
+            return "0.0"
         }
         let latlng1 = arrNMGLatLng.last!
         let latlng2 = getLatLng(locationInfo: locationInfo)
-        totDistance = totDistance + getDistance(latlng1: latlng1, latlng2: latlng2)
-//        totDistance = Double(arrLocationInfo.distance(from: 0, to: arrLocationInfo.count - 1))
-        
-        let strDistance = String(format: "%.2f", totDistance / 1000.0)
-        print("displayTopMenu : \(strDistance)")
-        
-        labelDistance.text = String(strDistance)
-        
-    }
-    
-    func getBestSpeed() {
-        
-    }
-    
-    func getAverageSpeed() {
-        
-    }
-    
-    func getDistance(latlng1: NMGLatLng, latlng2: NMGLatLng) -> Double {
         
         let distance = latlng2.distance(to: latlng1)
-        return distance
+        totDistance = totDistance + distance
+//        totDistance = Double(arrLocationInfo.distance(from: 0, to: arrLocationInfo.count - 1))
+        let strDistance = String(format: "%.2f", totDistance / 1000.0)
+        print("getDistance : \(strDistance)")
+        
+        return strDistance
         
     }
     
@@ -332,6 +361,7 @@ extension ViewController: CLLocationManagerDelegate {
 //        let distance = curNMGLatLng.distance(to: lastLatLng)
 //        print("distance : \(distance)")
 //        if distance > GAP_DISTANCE {
+        // temp_code
         if true {//locationInfo.speed > 0 {
             let curLatLng = getLatLng(locationInfo: locationInfo)
             arrNMGLatLng.append(curLatLng)
