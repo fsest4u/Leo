@@ -10,24 +10,53 @@ import UIKit
 import NMapsMap
 import CoreLocation
 
+// Like CLLocation
+//struct LocationInfo {
+//
+//    var altitude: Double
+//    var latitude: Double
+//    var longitude: Double
+//    var speed: Double
+//    var timestamp: Date //??
+//
+//    init() {
+//        altitude = 0
+//        latitude = DEFAULT_LATITUDE
+//        longitude = DEFAULT_LOGITUDE
+//        speed = 0
+//        timestamp = Date()
+//    }
+//}
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var naverMapView: NMFNaverMapView!
 
     var locationManager = CLLocationManager()
     
-    var locationOverlay = NMFLocationOverlay()
-    var pathOverlay = NMFPath()
+    var locationOverlay = NMFLocationOverlay()  // 사용자의 현재 위치
+    var pathOverlay = NMFPath()                 // 사용자의 움직인 경로
     
     var arrNMGLatLng: [NMGLatLng] = []
+    var arrLocationInfo: [CLLocation] = []
     
-    var curLatitude: Double = DEFAULT_LATITUDE
-    var curLongitude: Double = DEFAULT_LOGITUDE
+    var curLocationInfo = CLLocation()
+
+//    var curLatitude: Double = DEFAULT_LATITUDE
+//    var curLongitude: Double = DEFAULT_LOGITUDE
     
-    // control menu
+    // control menu - top
     var isVisibleMenu: Bool = false
     @IBOutlet weak var viewTopMenu: UIView!
+    @IBOutlet weak var labelCurVelocity: UILabel!
+    @IBOutlet weak var labelAverageVelocity: UILabel!
+    @IBOutlet weak var labelBestVelocity: UILabel!
+    @IBOutlet weak var labelElapsedTime: UILabel!
+    @IBOutlet weak var labelDistance: UILabel!
     
+    var totDistance: Double = 0
+    
+    // control menu - bottom
     @IBOutlet weak var viewBottomMenu: UIView!
     @IBOutlet weak var viewLeftBtn: UIView! {
         didSet {
@@ -47,8 +76,6 @@ class ViewController: UIViewController {
     }
     @IBOutlet weak var btnLeft: UIButton!
     @IBOutlet weak var btnRight: UIButton!
-    
-  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,6 +188,46 @@ class ViewController: UIViewController {
         
     }
     
+    func displayTopMenu(locationInfo: CLLocation) {
+        
+        // current speed
+        var speed = locationInfo.speed
+        if speed <= 0 {
+            speed = 0
+        }
+        labelCurVelocity.text = String(speed)
+        
+        // total distance
+        if arrNMGLatLng.count <= 0 {
+            return
+        }
+        let latlng1 = arrNMGLatLng.last!
+        let latlng2 = getLatLng(locationInfo: locationInfo)
+        totDistance = totDistance + getDistance(latlng1: latlng1, latlng2: latlng2)
+//        totDistance = Double(arrLocationInfo.distance(from: 0, to: arrLocationInfo.count - 1))
+        
+        let strDistance = String(format: "%.2f", totDistance / 1000.0)
+        print("displayTopMenu : \(strDistance)")
+        
+        labelDistance.text = String(strDistance)
+        
+    }
+    
+    func getBestSpeed() {
+        
+    }
+    
+    func getAverageSpeed() {
+        
+    }
+    
+    func getDistance(latlng1: NMGLatLng, latlng2: NMGLatLng) -> Double {
+        
+        let distance = latlng2.distance(to: latlng1)
+        return distance
+        
+    }
+    
     // MARK: - Control Menu
     @IBAction func onClick_BtnLeft(_ sender: UIButton) {
         
@@ -196,7 +263,7 @@ extension ViewController: NMFMapViewOptionDelegate {
     func mapViewOptionChanged(_ mapView: NMFMapView) {
         
         print("mapViewOptionChanged - mapView \(mapView)")
-        let position = NMFCameraPosition(NMGLatLng(lat: curLatitude, lng: curLongitude), zoom: naverMapView.mapView.zoomLevel, tilt: 0, heading: 0)
+        let position = NMFCameraPosition(getLatLng(locationInfo: curLocationInfo), zoom: naverMapView.mapView.zoomLevel, tilt: 0, heading: 0)
         
         naverMapView.mapView.moveCamera(NMFCameraUpdate(position: position))
 
@@ -214,51 +281,61 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        print("locationManager...")
-        let value: CLLocationCoordinate2D = manager.location!.coordinate
-        print("value = \(value.latitude) \(value.longitude)")
-        curLatitude = value.latitude
-        curLongitude = value.longitude
         
-        let curNMGLatLng = NMGLatLng(lat: curLatitude, lng: curLongitude)
-        locationOverlay.location = curNMGLatLng
+        print("manager.location +++++++++++++++++++++++")
+        guard let managerLocation = manager.location else {
+            return
+        }
         
-        let position = NMFCameraPosition(curNMGLatLng, zoom: naverMapView.mapView.zoomLevel, tilt: 0, heading: 0)
+        print("altitude : \(managerLocation.altitude)")
+        print("latitude : \(managerLocation.coordinate.latitude)")
+        print("longitude : \(managerLocation.coordinate.longitude)")
+        print("speed : \(managerLocation.speed)")
+        print("timestamp : \(managerLocation.timestamp)")
+        
+//        print("course : \(managerLocation.course)")
+//        print("altitude : \(manager.location?.courseAccuracy)")
+//        print("floor : \(managerLocation.floor)")
+//        print("verticalAccuracy : \(managerLocation.verticalAccuracy)")
+//        print("horizontalAccuracy : \(managerLocation.horizontalAccuracy)")
+//        print("speedAccuracy : \(managerLocation.speedAccuracy)")
+        
+//        curLocationInfo.altitude = managerLocation.altitude
+//        curLocationInfo.latitude = managerLocation.coordinate.latitude
+//        curLocationInfo.longitude = managerLocation.coordinate.longitude
+//        curLocationInfo.speed = managerLocation.speed
+//        curLocationInfo.timestamp = managerLocation.timestamp
+        curLocationInfo = managerLocation
+        
+        let curLatLng = getLatLng(locationInfo: curLocationInfo)
+        locationOverlay.location = curLatLng
+
+        let position = NMFCameraPosition(curLatLng, zoom: naverMapView.mapView.zoomLevel, tilt: 0, heading: 0)
         naverMapView.mapView.moveCamera(NMFCameraUpdate(position: position))
         
         if .play != playStatus {
             return
         }
-        
-//        print("manager.location +++++++++++++++++++++++")
-//        print("altitude : \(manager.location?.altitude)")
-//        print("coordinate : \(manager.location?.coordinate)")
-//        print("course : \(manager.location?.course)")
-////        print("altitude : \(manager.location?.courseAccuracy)")
-//        print("floor : \(manager.location?.floor)")
-//        print("horizontalAccuracy : \(manager.location?.horizontalAccuracy)")
-//        print("speed : \(manager.location?.speed)")
-//        print("speedAccuracy : \(manager.location?.speedAccuracy)")
-//        print("timestamp : \(manager.location?.timestamp)")
-//        print("verticalAccuracy : \(manager.location?.verticalAccuracy)")
-//
-//        print("locations +++++++++++++++++++++++")
-//        print("locations : \(locations)")
-//        print("+++++++++++++++++++++++")
+    
+        displayTopMenu(locationInfo: curLocationInfo)
 
-        if appendPathInfo(curNMGLatLng: curNMGLatLng) {
+        if appendLocationInfo(locationInfo: curLocationInfo) {
             print("Update Path Info ... ")
             viewPathInfo()
 
         }
     }
     
-    func appendPathInfo(curNMGLatLng: NMGLatLng) -> Bool {
-        let lastNMGLatLng = getLastNMGLatLng()
-        let distance = curNMGLatLng.distance(to: lastNMGLatLng)
-        print("distance : \(distance)")
-        if distance > GAP_DISTANCE {
-            arrNMGLatLng.append(curNMGLatLng)
+    func appendLocationInfo(locationInfo: CLLocation) -> Bool {
+//        let index = getIndexLastLocationInfo()
+//        let lastLatLng = arrNMGLatLng[index]
+//        let distance = curNMGLatLng.distance(to: lastLatLng)
+//        print("distance : \(distance)")
+//        if distance > GAP_DISTANCE {
+        if true {//locationInfo.speed > 0 {
+            let curLatLng = getLatLng(locationInfo: locationInfo)
+            arrNMGLatLng.append(curLatLng)
+            arrLocationInfo.append(locationInfo)
             return true
         }
         else {
@@ -279,17 +356,24 @@ extension ViewController: CLLocationManagerDelegate {
         pathOverlay.mapView = nil
     }
     
-    func getLastNMGLatLng() -> NMGLatLng {
+    func getLatLng(locationInfo: CLLocation) -> NMGLatLng {
         
-        var count = arrNMGLatLng.count
+        return NMGLatLng(lat: locationInfo.coordinate.latitude, lng: locationInfo.coordinate.longitude)
+        
+    }
+    
+    func getIndexLastLocationInfo() -> Int {
+        
+        var count = arrLocationInfo.count
         // 최초 입력
         if count <= 0 {
-            let curNMGLatLng = NMGLatLng(lat: curLatitude, lng: curLongitude)
-            arrNMGLatLng.append(curNMGLatLng)
+            let curLatLng = getLatLng(locationInfo: curLocationInfo)
+            arrNMGLatLng.append(curLatLng)
+            arrLocationInfo.append(curLocationInfo)
         }
-        count = arrNMGLatLng.count
+        count = arrLocationInfo.count
         
-        return arrNMGLatLng[count - 1]
-        
+//        return arrLocationInfo[count - 1]
+        return count - 1
     }
 }
