@@ -356,13 +356,8 @@ extension ViewController: CLLocationManagerDelegate {
     }
     
     func appendLocationInfo(locationInfo: CLLocation) -> Bool {
-//        let index = getIndexLastLocationInfo()
-//        let lastLatLng = arrNMGLatLng[index]
-//        let distance = curNMGLatLng.distance(to: lastLatLng)
-//        print("distance : \(distance)")
-//        if distance > GAP_DISTANCE {
-        // temp_code
-        if true {//locationInfo.speed > 0 {
+
+        if locationInfo.speed > 0 {
             let curLatLng = getLatLng(locationInfo: locationInfo)
             arrNMGLatLng.append(curLatLng)
             arrLocationInfo.append(locationInfo)
