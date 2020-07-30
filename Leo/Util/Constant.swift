@@ -15,6 +15,13 @@ let ZOOM_LEVEL_MAX: Double = 16
 let DEFAULT_LATITUDE: Double = 37.570202
 let DEFAULT_LOGITUDE: Double = 126.977047
 
-let GAP_DISTANCE:Double = 5    // meter
+let GAP_DISTANCE:Double = 15    // meter
 
+enum PlayStatus: Int {
+    case stop = 0
+    case share  // save
+    case play
+    case pause
+}
 
+var playStatus: PlayStatus = .stop
