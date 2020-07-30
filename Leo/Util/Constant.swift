@@ -18,10 +18,11 @@ let DEFAULT_LOGITUDE: Double = 126.977047
 let GAP_DISTANCE:Double = 50    // meter
 
 enum PlayStatus: Int {
-    case stop = 0
-    case share  // save
-    case play
+    case none = 0   // init
+    case stop
+    case share      // save
+    case play       // play or resume
     case pause
 }
 
-var playStatus: PlayStatus = .stop
+var playStatus: PlayStatus = .none

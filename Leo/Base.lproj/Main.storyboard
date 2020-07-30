@@ -199,20 +199,25 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6r-h1-R6B">
                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                                                <state key="normal" image="stop.fill" catalog="system"/>
-                                                                <state key="selected" image="square.and.arrow.up.fill" catalog="system"/>
                                                                 <connections>
                                                                     <action selector="onClick_BtnLeft:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fQl-nI-DrM"/>
                                                                 </connections>
                                                             </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stop" translatesAutoresizingMaskIntoConstraints="NO" id="TRl-mt-P0k">
+                                                                <rect key="frame" x="16" y="16" width="48" height="48"/>
+                                                            </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="t6r-h1-R6B" firstAttribute="top" secondItem="Mcr-af-eHK" secondAttribute="top" id="18X-OA-Xvr"/>
+                                                            <constraint firstAttribute="trailing" secondItem="TRl-mt-P0k" secondAttribute="trailing" constant="16" id="2Sy-Vd-a3s"/>
                                                             <constraint firstAttribute="bottom" secondItem="t6r-h1-R6B" secondAttribute="bottom" id="Tlz-U0-VwR"/>
+                                                            <constraint firstItem="TRl-mt-P0k" firstAttribute="top" secondItem="Mcr-af-eHK" secondAttribute="top" constant="16" id="WVE-p0-iDS"/>
                                                             <constraint firstAttribute="trailing" secondItem="t6r-h1-R6B" secondAttribute="trailing" id="cqI-kw-aBo"/>
                                                             <constraint firstItem="t6r-h1-R6B" firstAttribute="leading" secondItem="Mcr-af-eHK" secondAttribute="leading" id="dlA-c2-TLn"/>
+                                                            <constraint firstItem="TRl-mt-P0k" firstAttribute="leading" secondItem="Mcr-af-eHK" secondAttribute="leading" constant="16" id="vtD-hz-KlS"/>
                                                             <constraint firstAttribute="width" secondItem="Mcr-af-eHK" secondAttribute="height" multiplier="1:1" id="yz4-ch-EeR"/>
+                                                            <constraint firstAttribute="bottom" secondItem="TRl-mt-P0k" secondAttribute="bottom" constant="16" id="zlt-sy-abk"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -230,19 +235,24 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nm-Gj-Lzf">
                                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                                                <state key="normal" image="play.fill" catalog="system"/>
-                                                                <state key="selected" image="pause.fill" catalog="system"/>
                                                                 <connections>
                                                                     <action selector="onClick_BtnRight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Ic-eR-FRr"/>
                                                                 </connections>
                                                             </button>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" translatesAutoresizingMaskIntoConstraints="NO" id="HBb-1I-Jv1">
+                                                                <rect key="frame" x="16" y="16" width="48" height="48"/>
+                                                            </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="HBb-1I-Jv1" secondAttribute="trailing" constant="16" id="DkX-Ok-t4V"/>
                                                             <constraint firstItem="2nm-Gj-Lzf" firstAttribute="leading" secondItem="YM2-3I-NIs" secondAttribute="leading" id="EG4-T7-umd"/>
                                                             <constraint firstItem="2nm-Gj-Lzf" firstAttribute="top" secondItem="YM2-3I-NIs" secondAttribute="top" id="SH5-4W-ivy"/>
                                                             <constraint firstAttribute="width" secondItem="YM2-3I-NIs" secondAttribute="height" multiplier="1:1" id="VgE-yy-HCV"/>
+                                                            <constraint firstAttribute="bottom" secondItem="HBb-1I-Jv1" secondAttribute="bottom" constant="16" id="ZPn-H2-t5V"/>
                                                             <constraint firstAttribute="trailing" secondItem="2nm-Gj-Lzf" secondAttribute="trailing" id="aRQ-Vv-1I3"/>
+                                                            <constraint firstItem="HBb-1I-Jv1" firstAttribute="top" secondItem="YM2-3I-NIs" secondAttribute="top" constant="16" id="fyN-My-nC0"/>
+                                                            <constraint firstItem="HBb-1I-Jv1" firstAttribute="leading" secondItem="YM2-3I-NIs" secondAttribute="leading" constant="16" id="suy-7M-Kg4"/>
                                                             <constraint firstAttribute="bottom" secondItem="2nm-Gj-Lzf" secondAttribute="bottom" id="zxx-xM-UXe"/>
                                                         </constraints>
                                                     </view>
@@ -288,6 +298,8 @@
                     <connections>
                         <outlet property="btnLeft" destination="t6r-h1-R6B" id="rvm-9o-G3e"/>
                         <outlet property="btnRight" destination="2nm-Gj-Lzf" id="Hhd-Wo-pQT"/>
+                        <outlet property="imageViewLeft" destination="TRl-mt-P0k" id="pn5-Xx-8gC"/>
+                        <outlet property="imageViewRight" destination="HBb-1I-Jv1" id="ull-Wz-gNv"/>
                         <outlet property="labelAverageVelocity" destination="YrZ-wK-gBP" id="MSZ-48-d3e"/>
                         <outlet property="labelBestVelocity" destination="dpl-EK-Ghh" id="0kt-9Y-Ms7"/>
                         <outlet property="labelCurVelocity" destination="6EL-sp-YOA" id="QPe-GQ-SfM"/>
@@ -306,9 +318,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="pause.fill" catalog="system" width="116" height="128"/>
-        <image name="play.fill" catalog="system" width="116" height="128"/>
-        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
-        <image name="stop.fill" catalog="system" width="128" height="113"/>
+        <image name="play" width="147" height="168"/>
+        <image name="stop" width="120" height="127"/>
     </resources>
 </document>
