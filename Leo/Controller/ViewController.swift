@@ -53,7 +53,15 @@ class ViewController: UIViewController {
     var locationOverlay = NMFLocationOverlay()  // 사용자의 현재 위치
     var pathOverlay = NMFPath()                 // 사용자의 움직인 경로
     var locationInfo = LocationInfo()
-
+    
+    //MARK: Timer Variable
+    var startTime = TimeInterval()
+    var timer = Timer()
+    var isTiming = Bool()
+    var isPaused = Bool()
+    var pausedTime: NSDate?   //track the time current pause started
+    var pausedIntervals = [TimeInterval]()   //track previous pauses
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -182,17 +190,12 @@ class ViewController: UIViewController {
 //        print("left - \(sender.isSelected)")
         if sender.isSelected {
             playStatus = .stop
-//            imageViewLeft.image = UIImage(named: "open")
-            
-            btnRight.isSelected = false
-            imageViewRight.image = UIImage(named: "play")
-
             doStatus()
         }
         // temp_code, dylee
 //        else {
 //            playStatus = .share
-//            imageViewLeft.image = UIImage(named: "stop")
+//            doStatus()
 //        }
     }
     
@@ -202,17 +205,10 @@ class ViewController: UIViewController {
 //        print("right - \(sender.isSelected)")
         if sender.isSelected {
             playStatus = .play
-            imageViewRight.image = UIImage(named: "pause")
-
-            btnLeft.isSelected = false
-            imageViewLeft.image = UIImage(named: "stop")
-
             doStatus()
         }
         else {
             playStatus = .pause
-            imageViewRight.image = UIImage(named: "play")
-
             doStatus()
         }
     }
@@ -222,21 +218,47 @@ class ViewController: UIViewController {
         switch playStatus {
         case .stop:
             print("stop ############")
+//            imageViewLeft.image = UIImage(named: "open")
+            
+            btnRight.isSelected = false
+            imageViewRight.image = UIImage(named: "play")
+            
             labelCurVelocity.text = "0.0"
             labelAverageVelocity.text = "0.0"
             labelBestVelocity.text = "0.0"
             labelElapsedTime.text = "00:00:00"
             labelDistance.text = "0.0"
             
+            stopTimer()
+            
             removePathInfo()
             
         case .share:
             print("share ############")
+            imageViewLeft.image = UIImage(named: "stop")
+
         case .play:     
             print("play ############")
+            imageViewRight.image = UIImage(named: "pause")
+
+            btnLeft.isSelected = false
+            imageViewLeft.image = UIImage(named: "stop")
+            
+            if isPaused {
+                pauseTimer()
+
+            }
+            else {
+                startTimer()
+
+            }
+            
         case .pause:
             print("pause ############")
+            imageViewRight.image = UIImage(named: "play")
             labelCurVelocity.text = "0.0"
+            
+            pauseTimer()
             
         default:
             print("default ############")
@@ -253,7 +275,85 @@ class ViewController: UIViewController {
     }
     
     func removePathInfo() {
+        locationInfo.arrNMGLatLng.removeAll()
         pathOverlay.mapView = nil
+    }
+    
+    //MARK: Timer
+    
+    func stopTimer() {
+        
+        timer.invalidate()
+        
+        isTiming = false
+        isPaused = false
+        pausedTime = nil   //clear current paused state
+        pausedIntervals = []  //reset the pausedTimeCollector on new workout
+
+    }
+    
+    func startTimer() {
+        if !timer.isValid {
+            
+            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updatedTimer), userInfo: nil, repeats: true)
+            startTime = NSDate.timeIntervalSinceReferenceDate
+        }
+        
+        isTiming = true
+        isPaused = false
+        pausedIntervals = []  //reset the pausedTimeCollector on new workout
+    }
+    
+    func pauseTimer() {
+        
+        if isTiming == true && isPaused == false {
+            
+            timer.invalidate() //Stop the Timer
+            isPaused = true //isPaused
+            isTiming = false //Stopped Timing
+            pausedTime = NSDate() //asuuming you are starting a brand new workout timer
+            
+        }
+        else if isTiming == false && isPaused == true {
+            
+            let pausedSeconds = NSDate().timeIntervalSince(pausedTime! as Date)  //get time paused
+            pausedIntervals.append(pausedSeconds)  // add to paused time collector
+            pausedTime = nil   //clear current paused state
+            
+            if !timer.isValid {
+                
+                timer.invalidate()
+                //timer = nil
+                
+                timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updatedTimer),     userInfo: nil, repeats: true)
+                
+            }
+            
+            
+            isPaused = false
+            isTiming = true
+            
+        }
+    }
+    
+    @objc func updatedTimer() {
+        let currentTime = NSDate.timeIntervalSinceReferenceDate
+      var pausedSeconds = pausedIntervals.reduce(0) { $0 + $1 }   //calculate total time timer was previously paused
+      if let pausedTime = pausedTime {
+        pausedSeconds += NSDate().timeIntervalSince(pausedTime as Date)  //add current pause if paused
+      }
+        var elapsedTime: TimeInterval = currentTime - startTime - pausedSeconds  //subtract time paused
+      let minutes = Int(elapsedTime / 60.0)
+
+        elapsedTime -= (TimeInterval(minutes) * 60)
+      let seconds = Int(elapsedTime)
+
+        elapsedTime -= TimeInterval(seconds)
+
+      let strMinutes = String(format: "%02d", minutes)
+      let strSeconds = String(format: "%02d", seconds)
+
+      labelElapsedTime.text = "00:\(strMinutes):\(strSeconds)"
     }
 
 }
