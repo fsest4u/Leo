@@ -21,7 +21,8 @@ class LocationInfo {
     
     var totDistance: Double = 0
 
-    
+    // MARK: - Functions
+
     // current speed
     func getCurrentSpeed(srcSpeed: Double) -> String {
 
@@ -83,7 +84,7 @@ class LocationInfo {
         totDistance = totDistance + distance
 //        totDistance = Double(arrLocationInfo.distance(from: 0, to: arrLocationInfo.count - 1))
         let strDistance = String(format: "%.1f", totDistance / 1000.0)
-        print("getDistance : \(strDistance)")
+        print("getDistance : \(strDistance)km, \(distance)m")
         
         return strDistance
         
@@ -93,6 +94,35 @@ class LocationInfo {
         
         return NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
         
+    }
+    
+    func getIndexLastLocationInfo() -> Int {
+        
+        var count = arrLocationInfo.count
+        // 최초 입력
+        if count <= 0 {
+            let curLatLng = getLatLng(location: curLocationInfo)
+            arrNMGLatLng.append(curLatLng)
+            arrLocationInfo.append(curLocationInfo)
+        }
+        count = arrLocationInfo.count
+        
+//        return arrLocationInfo[count - 1]
+        return count - 1
+    }
+    
+    func appendLocationInfo(location: CLLocation) -> Bool {
+
+        // temp_code, dylee
+        if true {//locationInfo.speed > 0 {
+            let curLatLng = getLatLng(location: location)
+            arrNMGLatLng.append(curLatLng)
+            arrLocationInfo.append(location)
+            return true
+        }
+        else {
+            return false
+        }
     }
     
 }

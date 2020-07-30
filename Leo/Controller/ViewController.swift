@@ -116,6 +116,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: - Control Menu
     @objc func showControlMenu() {
         
         print("## showControlMenu... isVisibleMenu : \(isVisibleMenu)")
@@ -164,6 +165,7 @@ class ViewController: UIViewController {
         
     }
     
+    // MARK: - Top Menu
     func displayTopMenu(location: CLLocation) {
         
         labelCurVelocity.text = locationInfo.getCurrentSpeed(srcSpeed: location.speed)
@@ -173,11 +175,11 @@ class ViewController: UIViewController {
         
     }
     
-    // MARK: - Control Menu
+    // MARK: - Bottom Menu
     @IBAction func onClick_BtnLeft(_ sender: UIButton) {
         
         sender.isSelected.toggle()
-        print("left - \(sender.isSelected)")
+//        print("left - \(sender.isSelected)")
         if sender.isSelected {
             playStatus = .stop
 //            imageViewLeft.image = UIImage(named: "open")
@@ -197,7 +199,7 @@ class ViewController: UIViewController {
     @IBAction func onClick_BtnRight(_ sender: UIButton) {
         
         sender.isSelected.toggle()
-        print("right - \(sender.isSelected)")
+//        print("right - \(sender.isSelected)")
         if sender.isSelected {
             playStatus = .play
             imageViewRight.image = UIImage(named: "pause")
@@ -219,7 +221,7 @@ class ViewController: UIViewController {
         
         switch playStatus {
         case .stop:
-            print("stop")
+            print("stop ############")
             labelCurVelocity.text = "0.0"
             labelAverageVelocity.text = "0.0"
             labelBestVelocity.text = "0.0"
@@ -229,16 +231,29 @@ class ViewController: UIViewController {
             removePathInfo()
             
         case .share:
-            print("share")
+            print("share ############")
         case .play:     
-            print("play")
+            print("play ############")
         case .pause:
-            print("pause")
+            print("pause ############")
             labelCurVelocity.text = "0.0"
             
         default:
-            print("default")
+            print("default ############")
         }
+    }
+    
+    // MARK: - Path Info
+    func viewPathInfo() {
+        
+        pathOverlay.color = #colorLiteral(red: 0, green: 1, blue: 0, alpha: 1)
+        pathOverlay.path = NMGLineString(points: locationInfo.arrNMGLatLng)
+        pathOverlay.mapView = naverMapView.mapView
+        
+    }
+    
+    func removePathInfo() {
+        pathOverlay.mapView = nil
     }
 
 }
@@ -298,53 +313,12 @@ extension ViewController: CLLocationManagerDelegate {
     
         displayTopMenu(location: locationInfo.curLocationInfo)
 
-        if appendLocationInfo(location: locationInfo.curLocationInfo) {
+        if locationInfo.appendLocationInfo(location: locationInfo.curLocationInfo) {
             print("Update Path Info ... ")
             viewPathInfo()
 
         }
     }
     
-    func appendLocationInfo(location: CLLocation) -> Bool {
 
-        // temp_code, dylee
-        if true {//locationInfo.speed > 0 {
-            let curLatLng = locationInfo.getLatLng(location: location)
-            locationInfo.arrNMGLatLng.append(curLatLng)
-            locationInfo.arrLocationInfo.append(location)
-            return true
-        }
-        else {
-            return false
-        }
-    }
-    
-    func viewPathInfo() {
-        
-        pathOverlay.color = #colorLiteral(red: 0, green: 1, blue: 0, alpha: 1)
-        pathOverlay.path = NMGLineString(points: locationInfo.arrNMGLatLng)
-        pathOverlay.mapView = naverMapView.mapView
-        
-    }
-    
-    func removePathInfo() {
-        pathOverlay.mapView = nil
-    }
-    
-
-    
-    func getIndexLastLocationInfo() -> Int {
-        
-        var count = locationInfo.arrLocationInfo.count
-        // 최초 입력
-        if count <= 0 {
-            let curLatLng = locationInfo.getLatLng(location: locationInfo.curLocationInfo)
-            locationInfo.arrNMGLatLng.append(curLatLng)
-            locationInfo.arrLocationInfo.append(locationInfo.curLocationInfo)
-        }
-        count = locationInfo.arrLocationInfo.count
-        
-//        return arrLocationInfo[count - 1]
-        return count - 1
-    }
 }
