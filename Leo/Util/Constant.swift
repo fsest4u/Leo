@@ -9,8 +9,8 @@
 import Foundation
 
 let ZOOM_LEVEL_DEFAULT: Double = 14
-let ZOOM_LEVEL_MIN: Double = 8
-let ZOOM_LEVEL_MAX: Double = 16
+let ZOOM_LEVEL_MIN: Double = 10      // min 0.0
+let ZOOM_LEVEL_MAX: Double = 18     // max 22.0
 
 let DEFAULT_LATITUDE: Double = 37.570202
 let DEFAULT_LOGITUDE: Double = 126.977047
