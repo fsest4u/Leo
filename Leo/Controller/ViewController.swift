@@ -72,6 +72,10 @@ class ViewController: UIViewController {
 
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        UIApplication.shared.isIdleTimerDisabled = false
+    }
+    
     func initLocation() {
         
         locationManager.requestAlwaysAuthorization()
@@ -218,6 +222,8 @@ class ViewController: UIViewController {
         switch playStatus {
         case .stop:
             print("stop ############")
+            UIApplication.shared.isIdleTimerDisabled = false
+
 //            imageViewLeft.image = UIImage(named: "open")
             
             btnRight.isSelected = false
@@ -239,6 +245,8 @@ class ViewController: UIViewController {
 
         case .play:     
             print("play ############")
+            UIApplication.shared.isIdleTimerDisabled = true
+
             imageViewRight.image = UIImage(named: "pause")
 
             btnLeft.isSelected = false
