@@ -357,12 +357,12 @@
                         <outlet property="labelAverageVelocity" destination="YrZ-wK-gBP" id="MSZ-48-d3e"/>
                         <outlet property="labelBestVelocity" destination="dpl-EK-Ghh" id="0kt-9Y-Ms7"/>
                         <outlet property="labelCurVelocity" destination="6EL-sp-YOA" id="QPe-GQ-SfM"/>
-                        <outlet property="labelDistance" destination="Dbf-Qw-8h0" id="2IZ-Zm-G6l"/>
-                        <outlet property="labelElapsedTime" destination="o3c-1G-xM9" id="3IJ-e1-goi"/>
                         <outlet property="labelLatitude" destination="hH4-97-7GE" id="s4S-ra-JaK"/>
                         <outlet property="labelLongitude" destination="pXa-xD-WRm" id="htr-vF-3fr"/>
                         <outlet property="labelSpeed" destination="Fuu-43-hc0" id="gqi-7l-38l"/>
                         <outlet property="labelTimeStamp" destination="vHR-w3-BQZ" id="sLE-dJ-YU7"/>
+                        <outlet property="labelTotDistance" destination="Dbf-Qw-8h0" id="bU6-dx-EaL"/>
+                        <outlet property="labelTotElapsedTime" destination="o3c-1G-xM9" id="gO5-Ca-flU"/>
                         <outlet property="naverMapView" destination="28t-3d-y58" id="cEp-9f-RVP"/>
                         <outlet property="viewBottomMenu" destination="fv9-Zr-4w6" id="kj7-7M-ltz"/>
                         <outlet property="viewLeftBtn" destination="Mcr-af-eHK" id="Ng9-9O-2tL"/>

@@ -21,8 +21,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var labelCurVelocity: UILabel!
     @IBOutlet weak var labelAverageVelocity: UILabel!
     @IBOutlet weak var labelBestVelocity: UILabel!
-    @IBOutlet weak var labelElapsedTime: UILabel!
-    @IBOutlet weak var labelDistance: UILabel!
+    @IBOutlet weak var labelTotElapsedTime: UILabel!
+    @IBOutlet weak var labelTotDistance: UILabel!
     
     
     // control menu - bottom
@@ -188,10 +188,11 @@ class ViewController: UIViewController {
     // MARK: - Top Menu
     func displayTopMenu(location: CLLocation) {
         
-        labelCurVelocity.text = locationInfo.getCurrentSpeed(srcSpeed: location.speed)
+//        labelCurVelocity.text = locationInfo.getCurrentSpeed(srcSpeed: location.speed)
+        labelCurVelocity.text = locationInfo.getCurrentSpeed(location: location)
         labelAverageVelocity.text = locationInfo.getAverageSpeed()
         labelBestVelocity.text = locationInfo.getBestSpeed()
-        labelDistance.text = locationInfo.getDistance(location: location)
+        labelTotDistance.text = locationInfo.getTotalDistance(location: location)
         
         if DEBUG_MODE {
             displayDebugInfo(location: location)
@@ -205,8 +206,10 @@ class ViewController: UIViewController {
             labelAltitude.text = "고도: " + String(location.altitude)
             labelLatitude.text = "위도: " + String(location.coordinate.latitude)
             labelLongitude.text = "경도: " + String(location.coordinate.longitude)
-            labelSpeed.text = "속도: " + String(location.speed) + " km"
-            labelTimeStamp.text = "시간: " + String(location.timestamp.description)
+//            labelSpeed.text = "속도: " + String(location.speed) + " km"
+//            labelTimeStamp.text = "시간: " + String(location.timestamp.description)
+            labelSpeed.text = "거리: " + String(locationInfo.getDistance(location: location)) + " m"
+            labelTimeStamp.text = "시간: " + String(locationInfo.getElapsedTime(location: location)) + " sec"
             
         }
         else {
@@ -268,8 +271,8 @@ class ViewController: UIViewController {
             labelCurVelocity.text = "0.0"
             labelAverageVelocity.text = "0.0"
             labelBestVelocity.text = "0.0"
-            labelElapsedTime.text = "00:00:00"
-            labelDistance.text = "0.0"
+            labelTotElapsedTime.text = "00:00:00"
+            labelTotDistance.text = "0.0"
             
             stopTimer()
             removePathInfo()
@@ -399,7 +402,7 @@ class ViewController: UIViewController {
       let strMinutes = String(format: "%02d", minutes)
       let strSeconds = String(format: "%02d", seconds)
 
-      labelElapsedTime.text = "00:\(strMinutes):\(strSeconds)"
+      labelTotElapsedTime.text = "00:\(strMinutes):\(strSeconds)"
     }
 
 }

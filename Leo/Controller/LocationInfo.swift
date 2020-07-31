@@ -35,6 +35,50 @@ class LocationInfo {
         return strSpeed
     }
     
+    func getCurrentSpeed(location: CLLocation) -> String {
+        
+        let distance = getDistance(location: location)
+        let elapsedTime = getElapsedTime(location: location)
+        print("distance : \(distance)")
+        print("elapsedTime : \(elapsedTime)")
+
+        if elapsedTime != 0 {
+            let speed = distance / elapsedTime * 3600 / 1000
+            let strSpeed = String(format: "%.1f", speed)
+            print("getCurrentSpeed : \(strSpeed)")
+            return strSpeed
+        }
+        else {
+            return "0.0"
+        }
+        
+    }
+    
+    func getDistance(location: CLLocation) -> Double {
+        if arrNMGLatLng.count <= 0 {
+            return 0.0
+        }
+        let latlng1 = arrNMGLatLng.last!
+        let latlng2 = getLatLng(location: location)
+        
+        let distance = latlng2.distance(to: latlng1)
+        print("getDistance : \(distance) m")
+        return distance
+    }
+    
+    func getElapsedTime(location: CLLocation) -> Double {
+        
+        if arrLocationInfo.count <= 0 {
+            return 0.0
+        }
+        let oldLocation = arrLocationInfo.last!
+        let elapsedSecond = location.timestamp.seconds(sinceDate: oldLocation.timestamp) ?? 0
+        
+        print("getElapsedTime : \(elapsedSecond) sec")
+        return Double(elapsedSecond)
+        
+    }
+    
     // average speed
     func getAverageSpeed() -> String {
         let count = arrLocationInfo.count
@@ -72,20 +116,12 @@ class LocationInfo {
     }
     
     // total distance
-    func getDistance(location: CLLocation) -> String {
-        
-        if arrNMGLatLng.count <= 0 {
-            return "0.0"
-        }
-        let latlng1 = arrNMGLatLng.last!
-        let latlng2 = getLatLng(location: location)
-        
-        let distance = latlng2.distance(to: latlng1)
+    func getTotalDistance(location: CLLocation) -> String {
+        let distance = getDistance(location: location)
         totDistance = totDistance + distance
 //        totDistance = Double(arrLocationInfo.distance(from: 0, to: arrLocationInfo.count - 1))
-        let strDistance = String(format: "%.1f", totDistance / 1000.0)
-        print("getDistance : \(strDistance)km, \(distance)m")
-        
+        let strDistance = String(format: "%.1f", totDistance / 1000)
+        print("getTotalDistance : \(strDistance) km")
         return strDistance
         
     }
@@ -107,13 +143,16 @@ class LocationInfo {
         }
         count = arrLocationInfo.count
         
+        print("getIndexLast index : \(count - 1)")
 //        return arrLocationInfo[count - 1]
         return count - 1
     }
     
     func appendLocationInfo(location: CLLocation) -> Bool {
 
+        // temp_code, dylee
         if location.speed > 0 {
+//        if true {
             let curLatLng = getLatLng(location: location)
             arrNMGLatLng.append(curLatLng)
             arrLocationInfo.append(location)
