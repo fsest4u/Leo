@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var naverMapView: NMFNaverMapView!
     
     // control menu - top
-    var isVisibleMenu: Bool = false
+    var isVisibleMenu: Bool = true
     @IBOutlet weak var viewTopMenu: UIView!
     @IBOutlet weak var labelCurVelocity: UILabel!
     @IBOutlet weak var labelAverageVelocity: UILabel!
@@ -295,7 +295,7 @@ class ViewController: UIViewController {
     func startTimer() {
         if !timer.isValid {
             
-            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updatedTimer), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updatedTimer), userInfo: nil, repeats: true)
             startTime = NSDate.timeIntervalSinceReferenceDate
         }
         
@@ -325,7 +325,7 @@ class ViewController: UIViewController {
                 timer.invalidate()
                 //timer = nil
                 
-                timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updatedTimer),     userInfo: nil, repeats: true)
+                timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updatedTimer),     userInfo: nil, repeats: true)
                 
             }
             
@@ -362,7 +362,7 @@ extension ViewController: NMFMapViewOptionDelegate {
     
     func mapViewOptionChanged(_ mapView: NMFMapView) {
         
-        print("mapViewOptionChanged - mapView \(mapView)")
+        print("mapViewOptionChanged - mapView \(mapView.maxZoomLevel) \(mapView.minZoomLevel)")
         let position = NMFCameraPosition(locationInfo.getLatLng(location: locationInfo.curLocationInfo), zoom: naverMapView.mapView.zoomLevel, tilt: 0, heading: 0)
         
         naverMapView.mapView.moveCamera(NMFCameraUpdate(position: position))

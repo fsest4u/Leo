@@ -25,7 +25,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="showLocationButton" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="to7-ZS-Tr6">
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="to7-ZS-Tr6">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Vlu-2I-B9O">
@@ -185,7 +185,7 @@
                                     <constraint firstItem="Vlu-2I-B9O" firstAttribute="leading" secondItem="to7-ZS-Tr6" secondAttribute="leading" id="kmH-7v-17a"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fv9-Zr-4w6">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fv9-Zr-4w6">
                                 <rect key="frame" x="0.0" y="762" width="414" height="100"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NoE-Ue-Iob">
