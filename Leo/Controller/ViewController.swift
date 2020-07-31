@@ -53,7 +53,7 @@ class ViewController: UIViewController {
     var locationOverlay = NMFLocationOverlay()  // 사용자의 현재 위치
     var pathOverlay = NMFPath()                 // 사용자의 움직인 경로
     var locationInfo = LocationInfo()
-    
+        
     //MARK: Timer Variable
     var startTime = TimeInterval()
     var timer = Timer()
@@ -230,8 +230,8 @@ class ViewController: UIViewController {
             labelDistance.text = "0.0"
             
             stopTimer()
-            
             removePathInfo()
+            locationInfo.removeLocationInfo()
             
         case .share:
             print("share ############")
@@ -275,7 +275,6 @@ class ViewController: UIViewController {
     }
     
     func removePathInfo() {
-        locationInfo.arrNMGLatLng.removeAll()
         pathOverlay.mapView = nil
     }
     

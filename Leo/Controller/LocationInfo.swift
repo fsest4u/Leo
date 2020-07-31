@@ -113,8 +113,7 @@ class LocationInfo {
     
     func appendLocationInfo(location: CLLocation) -> Bool {
 
-        // temp_code, dylee
-        if true {//locationInfo.speed > 0 {
+        if location.speed > 0 {
             let curLatLng = getLatLng(location: location)
             arrNMGLatLng.append(curLatLng)
             arrLocationInfo.append(location)
@@ -123,6 +122,12 @@ class LocationInfo {
         else {
             return false
         }
+    }
+    
+    func removeLocationInfo() {
+        arrNMGLatLng.removeAll()
+        arrLocationInfo.removeAll()
+        totDistance = 0
     }
     
 }
