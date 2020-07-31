@@ -48,7 +48,15 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var imageViewLeft: UIImageView!
     @IBOutlet weak var imageViewRight: UIImageView!
-        
+    
+    // debug menu
+    @IBOutlet weak var labelAltitude: UILabel!
+    @IBOutlet weak var labelLatitude: UILabel!
+    @IBOutlet weak var labelLongitude: UILabel!
+    @IBOutlet weak var labelSpeed: UILabel!
+    @IBOutlet weak var labelTimeStamp: UILabel!
+    
+    // location info & UI
     var locationManager = CLLocationManager()
     var locationOverlay = NMFLocationOverlay()  // 사용자의 현재 위치
     var pathOverlay = NMFPath()                 // 사용자의 움직인 경로
@@ -185,6 +193,34 @@ class ViewController: UIViewController {
         labelBestVelocity.text = locationInfo.getBestSpeed()
         labelDistance.text = locationInfo.getDistance(location: location)
         
+        if DEBUG_MODE {
+            displayDebugInfo(location: location)
+        }
+        
+    }
+    
+    func displayDebugInfo(location: CLLocation) {
+        
+        if playStatus == .play {
+            labelAltitude.text = "고도: " + String(location.altitude)
+            labelLatitude.text = "위도: " + String(location.coordinate.latitude)
+            labelLongitude.text = "경도: " + String(location.coordinate.longitude)
+            labelSpeed.text = "속도: " + String(location.speed) + " km"
+            labelTimeStamp.text = "시간: " + String(location.timestamp.description)
+            
+        }
+        else {
+            clearDebugInfo()
+        }
+     
+    }
+    
+    func clearDebugInfo() {
+        labelAltitude.text = ""
+        labelLatitude.text = ""
+        labelLongitude.text = ""
+        labelSpeed.text = ""
+        labelTimeStamp.text = ""
     }
     
     // MARK: - Bottom Menu
@@ -238,6 +274,9 @@ class ViewController: UIViewController {
             stopTimer()
             removePathInfo()
             locationInfo.removeLocationInfo()
+            if DEBUG_MODE {
+                clearDebugInfo()
+            }
             
         case .share:
             print("share ############")
@@ -388,23 +427,9 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-//        print("manager.location +++++++++++++++++++++++")
         guard let managerLocation = manager.location else {
             return
         }
-        
-//        print("altitude : \(managerLocation.altitude)")
-//        print("latitude : \(managerLocation.coordinate.latitude)")
-//        print("longitude : \(managerLocation.coordinate.longitude)")
-//        print("speed : \(managerLocation.speed)")
-//        print("timestamp : \(managerLocation.timestamp)")
-        
-//        print("course : \(managerLocation.course)")
-//        print("altitude : \(manager.location?.courseAccuracy)")
-//        print("floor : \(managerLocation.floor)")
-//        print("verticalAccuracy : \(managerLocation.verticalAccuracy)")
-//        print("horizontalAccuracy : \(managerLocation.horizontalAccuracy)")
-//        print("speedAccuracy : \(managerLocation.speedAccuracy)")
         
         locationInfo.curLocationInfo = managerLocation
         
@@ -419,7 +444,7 @@ extension ViewController: CLLocationManagerDelegate {
         }
     
         displayTopMenu(location: locationInfo.curLocationInfo)
-
+        
         if locationInfo.appendLocationInfo(location: locationInfo.curLocationInfo) {
             print("Update Path Info ... ")
             viewPathInfo()
