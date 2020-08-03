@@ -7,7 +7,8 @@ target 'Leo' do
 
   # Pods for Leo
   pod 'NMapsMap'
-  
+  pod 'PopupDialog', '~> 1.1'
+
   target 'LeoTests' do
     inherit! :search_paths
     # Pods for testing

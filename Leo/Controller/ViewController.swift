@@ -9,6 +9,7 @@
 import UIKit
 import NMapsMap
 import CoreLocation
+import PopupDialog
 
 
 class ViewController: UIViewController {
@@ -235,11 +236,10 @@ class ViewController: UIViewController {
             playStatus = .stop
             doStatus()
         }
-        // temp_code, dylee
-//        else {
-//            playStatus = .share
-//            doStatus()
-//        }
+        else {
+            playStatus = .share
+            doStatus()
+        }
     }
     
     @IBAction func onClick_BtnRight(_ sender: UIButton) {
@@ -263,7 +263,7 @@ class ViewController: UIViewController {
             print("stop ############")
             UIApplication.shared.isIdleTimerDisabled = false
 
-//            imageViewLeft.image = UIImage(named: "open")
+            imageViewLeft.image = UIImage(named: "open")
             
             btnRight.isSelected = false
             imageViewRight.image = UIImage(named: "play")
@@ -284,6 +284,7 @@ class ViewController: UIViewController {
         case .share:
             print("share ############")
             imageViewLeft.image = UIImage(named: "stop")
+            displayPopup(title: "안내", message: "준비 중인 기능입니다.")
 
         case .play:     
             print("play ############")
@@ -405,6 +406,13 @@ class ViewController: UIViewController {
       labelTotElapsedTime.text = "00:\(strMinutes):\(strSeconds)"
     }
 
+    func displayPopup(title: String, message: String) {
+        
+        let popup = PopupDialog(title: title, message: message)
+        let btnOK = DefaultButton(title: "OK", action: nil)
+        
+        self.present(popup, animated: true, completion: nil)
+    }
 }
 
 extension ViewController: NMFMapViewOptionDelegate {
