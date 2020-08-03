@@ -188,8 +188,8 @@ class ViewController: UIViewController {
     // MARK: - Top Menu
     func displayTopMenu(location: CLLocation) {
         
-//        labelCurVelocity.text = locationInfo.getCurrentSpeed(srcSpeed: location.speed)
-        labelCurVelocity.text = locationInfo.getCurrentSpeed(location: location)
+        labelCurVelocity.text = locationInfo.getCurrentSpeed(srcSpeed: location.speed)
+//        labelCurVelocity.text = locationInfo.getCurrentSpeed(location: location)
         labelAverageVelocity.text = locationInfo.getAverageSpeed()
         labelBestVelocity.text = locationInfo.getBestSpeed()
         labelTotDistance.text = locationInfo.getTotalDistance(location: location)
@@ -206,10 +206,10 @@ class ViewController: UIViewController {
             labelAltitude.text = "고도: " + String(location.altitude)
             labelLatitude.text = "위도: " + String(location.coordinate.latitude)
             labelLongitude.text = "경도: " + String(location.coordinate.longitude)
-//            labelSpeed.text = "속도: " + String(location.speed) + " km"
-//            labelTimeStamp.text = "시간: " + String(location.timestamp.description)
-            labelSpeed.text = "거리: " + String(locationInfo.getDistance(location: location)) + " m"
-            labelTimeStamp.text = "시간: " + String(locationInfo.getElapsedTime(location: location)) + " sec"
+            labelSpeed.text = "속도: " + String(Util.convertMStoKmH(meterPerSecond: location.speed)) + " km/h"
+            labelTimeStamp.text = "시간: " + String(location.timestamp.description)
+//            labelSpeed.text = "거리: " + String(locationInfo.getDistance(location: location)) + " m"
+//            labelTimeStamp.text = "시간: " + String(locationInfo.getElapsedTime(location: location)) + " sec"
             
         }
         else {

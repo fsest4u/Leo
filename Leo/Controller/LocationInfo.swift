@@ -26,7 +26,8 @@ class LocationInfo {
     // current speed
     func getCurrentSpeed(srcSpeed: Double) -> String {
 
-        var speed = srcSpeed
+        // meter / second => kilometer / hour
+        var speed = Util.convertMStoKmH(meterPerSecond: srcSpeed)
         if speed <= 0 {
             speed = 0
         }
@@ -43,7 +44,7 @@ class LocationInfo {
         print("elapsedTime : \(elapsedTime)")
 
         if elapsedTime != 0 {
-            let speed = distance / elapsedTime * 3600 / 1000
+            let speed = Util.convertMStoKmH(meterPerSecond: distance / elapsedTime)
             let strSpeed = String(format: "%.1f", speed)
             print("getCurrentSpeed : \(strSpeed)")
             return strSpeed
@@ -94,7 +95,8 @@ class LocationInfo {
             totSpeed = totSpeed + speed
         }
         
-        let averSpeed = totSpeed / Double(count)
+        var averSpeed = totSpeed / Double(count)
+        averSpeed = Util.convertMStoKmH(meterPerSecond: averSpeed)
         let strSpeed = String(format: "%.1f", averSpeed)
         print("getAverageSpeed : \(strSpeed)")
         return strSpeed
@@ -110,6 +112,7 @@ class LocationInfo {
         if maxSpeed < 0 {
             maxSpeed = 0
         }
+        maxSpeed = Util.convertMStoKmH(meterPerSecond: maxSpeed)
         let strSpeed = String(format: "%.1f", maxSpeed)
         print("getBestSpeed : \(strSpeed)")
         return strSpeed
