@@ -10,6 +10,8 @@ import Foundation
 
 let DEBUG_MODE = true
 
+let CLIENT_ID = "ni87s2379o"
+
 let ZOOM_LEVEL_DEFAULT: Double = 14
 let ZOOM_LEVEL_MIN: Double = 10      // min 0.0
 let ZOOM_LEVEL_MAX: Double = 18     // max 22.0
